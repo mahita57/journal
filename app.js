@@ -41,7 +41,7 @@ class user {
         div.className = `alert alert-${className}`;
         div.appendChild(document.createTextNode(message));
         const container = document.querySelector('.container');
-        const form = document.querySelector('#book-form');
+        const form = document.querySelector('#journal');
         container.insertBefore(div, form);
 
         //Alert meaasge vanish in 2 seconds
