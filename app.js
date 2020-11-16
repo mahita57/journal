@@ -1,3 +1,6 @@
+if (typeof (document) !== "undefined") {
+    //script
+}
 //Represents day wise entries
 class journalEntry {
     constructor(date, myEntry) {
@@ -9,9 +12,9 @@ class journalEntry {
 //Managing user tasks
 class user {
     static displayEntries() {
-        const entry = storeEntries.getEntries();
+        const entry1 = storeEntries.getEntries();
 
-        entry.forEach((journalEntry) => user.addEntry(journalEntry));
+        entry1.forEach((entry) => user.addEntry(entry));
     }
     static addEntry(entry) {
         const list = document.querySelector('#journalEntry');
@@ -21,7 +24,7 @@ class user {
         row.innerHTML = `
         <td>${entry.date}</td>
         <td>${entry.myEntry}</td>
-        <td>a href="#" class= "btn btn-danger btn-sm delete">X</a></td>
+        <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
         `;
 
         list.appendChild(row);
@@ -34,15 +37,15 @@ class user {
     }
 
     static showAlert(message, className) {
-        const div = doccument.createElement('div');
+        const div = document.createElement('div');
         div.className = `alert alert-${className}`;
         div.appendChild(document.createTextNode(message));
         const container = document.querySelector('.container');
         const form = document.querySelector('#book-form');
         container.insertBefore(div, form);
 
-        //Vanish in 3 seconds
-        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+        //Alert meaasge vanish in 2 seconds
+        setTimeout(() => document.querySelector('.alert').remove(), 2000);
     }
 
     static clearFields() {
@@ -83,13 +86,14 @@ class storeEntries {
 }
 
 //Event: Displaying the entires
-document.addEventListener('DOMContentLoaded', user.displayEntries);
-
+window.addEventListener('DOMContentLoaded', function () {
+    user.displayEntries();
+});
 // Event: Adding an entry
-document.querySelector('#journalEntry').addEventListener('submit', (e) => {
+document.querySelector('#journal').addEventListener('submit', (e) => {
     //prevent default
     e.preventDefault();
-
+    //console.log('test');
     //getting the values in the form
 
     const date = document.querySelector('#date').value;
@@ -127,3 +131,4 @@ document.querySelector('#journalEntry').addEventListener('click', (e) => {
     user.showAlert('Entry deleted', 'success');
 
 });
+//test push
